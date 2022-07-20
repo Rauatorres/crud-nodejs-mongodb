@@ -1,0 +1,37 @@
+@media (min-width: 400px){
+
+    .main-div{
+        width: 320px;
+    }
+
+    form{
+        max-width: 280px;
+    }
+    label{
+        width: 268px;
+    }
+    .campo_digitacao{
+        width: 260px;
+    }
+    input[type="submit"]{
+        width: 200px;
+    }
+}
+
+@media (min-width: 676px){
+    table{
+        max-width: 411px;
+    }
+}
+
+@media (min-width: 870px){
+    body{
+        display: flex;
+    }
+}
+@media (min-width: 1024px){
+    table{
+        max-width: none;
+        width: 60vw;
+    }
+}

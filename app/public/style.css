@@ -1,0 +1,85 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(4, 223, 51);
+}
+
+.main-div{
+    background-color: white;
+    width: 80vw;
+    margin: auto;
+    margin-top: 20px;
+    padding: 1.5em 1em;
+}
+h1, #formprincipal{
+    width: fit-content;
+}
+h1, #formprincipal, table{
+    margin: auto;
+}
+h1{
+    position: relative;
+    text-align: center;
+    font-size: 1.5em;
+    color: rgb(1, 151, 33);
+}
+
+#formprincipal{
+    margin-top: 17px;
+    width: 70vw;
+}
+#formprincipal *{
+    display: block;
+}
+label{
+    font-size: 1.2em;
+    width: fit-content;
+}
+p{
+    margin: 0;
+    margin-bottom: 3px;
+}
+#area-idade{
+    margin-top: 15px;
+}
+input{
+    height: 20px;
+    width: 65vw;
+}
+input[type="submit"]{
+    display: block;
+    margin: auto;
+    margin-top: 17px;
+    width: 50vw;
+    height: fit-content;
+    font-size: 1.1em;
+    padding: 0.1em;
+}
+
+table{
+    margin-top: 30px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+th, td{
+    padding: 0.3em;
+}   
+th{
+    font-size: 1.2em;
+    background-color: rgb(31, 31, 31);
+    color: white;
+}
+.celula-nome{
+    max-width: 30vw;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+a{
+    text-decoration: none;
+    display: block;
+    background-color: rgb(231, 107, 6);
+    color: white;
+    padding: 0.2em 0.5em;
+    margin: 0.3em 0;
+}

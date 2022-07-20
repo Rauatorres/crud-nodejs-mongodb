@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Node.Js + MongoDB</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsivo.css">
+</head>
+<body>
+    <div class="main-div">
+        <h1>Projeto CRUD com Node e MongoDB</h1>
+        <form action="<%= formAction %>" method="post" id="formprincipal">
+            <% if(formAction == "/editarpessoa"){ %>
+                <input type="hidden" name="_id" value="<%= idpessoa %>">
+            <% } %>
+            <label for="campo_nome">
+                <p>Nome</p>
+                <input type="text" name="nome" id="campo_nome" class="campo_digitacao" value="<%= pessoaAEditar.nome %>">
+            </label>
+            <label for="campo_idade" id="area-idade">
+                <p>Idade</p>
+                <input type="number" name="idade" id="campo_idade" class="campo_digitacao" value="<%= pessoaAEditar.idade %>">
+            </label>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th colspan="2"></th>
+        </tr>
+        <% for(index in pessoas){ %>
+            <tr class="linhasConteudo">
+                <td class="celula-nome"><%= pessoas[index].nome %></td>
+                <td><%= pessoas[index].idade %></td>
+                <td><a href="/excluir?_id=<%= pessoas[index]._id %>">excluir</a></td>
+                <td><a href="/pag_editar?_id=<%= pessoas[index]._id %>">editar</a></td>
+            </tr>
+        <% } %>
+    </table>
+    <script>
+        var linhas = document.querySelectorAll('.linhasConteudo')
+
+        for(index in linhas){
+            if(index % 2 == 0){
+                linhas[index].style.backgroundColor = "white"
+            }else{
+                linhas[index].style.backgroundColor = "rgb(185, 185, 185)"
+            }
+        }
+    </script>
+</body>
+</html>
