@@ -1,11 +1,13 @@
-module.exports.index = function (application, req, res) {
+module.exports.index = async function (application, req, res) {
     const pessoaDB = new application.app.model.PessoasDAO() // classe PessoasDAO
-    pessoaDB.todasPessoas((result) => {
-        res.render('index', {pessoas: result, formAction: "/insertpessoa", pessoaAEditar: {}})
+    res.render('index', {
+        pessoas: await pessoaDB.todasPessoas(),
+        formAction: "/insertpessoa",
+        pessoaAEditar: {}
     })
 }
 
-module.exports.inserirPessoa = function (application, req, res) {
+module.exports.inserirPessoa = async function (application, req, res) {
     // insere pessoa no banco de dados
     const pessoaDB = new application.app.model.PessoasDAO() // classe PessoasDAO
     
@@ -18,28 +20,29 @@ module.exports.inserirPessoa = function (application, req, res) {
         }
     }
 
-    pessoaDB.inserirPessoa(pessoa)
+    await pessoaDB.inserirPessoa(pessoa)
 
     res.redirect("/")
 }
 
-module.exports.deletarPessoa = function (application, req, res) {
+module.exports.deletarPessoa = async function (application, req, res) {
     const pessoaDB = new application.app.model.PessoasDAO() // classe PessoasDAO
-    pessoaDB.deletarPessoa(req.query)
+    await pessoaDB.deletarPessoa(req.query)
     res.redirect("/")
 }
 
-module.exports.pagEditar = function (application, req, res) {
+module.exports.pagEditar = async function (application, req, res) {
     const pessoaDB = new application.app.model.PessoasDAO() // classe PessoasDAO
-    pessoaDB.todasPessoas((resultPessoas) => {
-        pessoaDB.pesquisarPessoa(req.query, (resultPessoa) => {
-            res.render('index', {pessoas: resultPessoas, formAction: "/editarpessoa", idpessoa: req.query._id, pessoaAEditar: resultPessoa})
-        })
+    res.render('index', {
+        pessoas: await pessoaDB.todasPessoas(),
+        formAction: "/editarpessoa",
+        idpessoa: req.query._id,
+        pessoaAEditar: await pessoaDB.pesquisarPessoa(req.query)
     })
 }
 
-module.exports.editarPessoa = function (application, req, res) {
+module.exports.editarPessoa = async function (application, req, res) {
     const pessoaDB = new application.app.model.PessoasDAO() // classe PessoasDAO
-    pessoaDB.editarPessoa(req.body._id, {nome: req.body.nome, idade: req.body.idade})
+    await pessoaDB.editarPessoa(req.body._id, {nome: req.body.nome, idade: req.body.idade})
     res.redirect("/")
 }
